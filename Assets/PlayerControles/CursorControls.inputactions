@@ -6,6 +6,15 @@
             "id": "38679426-18de-4118-8fc4-2635a6eb3f0a",
             "actions": [
                 {
+                    "name": "RClick",
+                    "type": "Button",
+                    "id": "2ad3f15f-d753-4dd9-b4f5-7853435cee7a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Click",
                     "type": "Button",
                     "id": "777ff82d-5fe6-42b4-9d64-0b5838e15f60",
@@ -44,6 +53,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e7571417-3a17-418d-9512-d9282d1a0726",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

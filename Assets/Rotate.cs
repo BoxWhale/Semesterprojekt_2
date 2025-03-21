@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Rotate : MonoBehaviour
+public class Rotate : MonoBehaviour, IInteractable
 {
     public Vector3 maxRotation;
     public Vector3 minRotation;
@@ -62,6 +62,17 @@ public class Rotate : MonoBehaviour
             {
                 node.GetComponent<NodeID>().walkable = false;
             }
+        }
+    }
+    public void OnInteract()
+    {
+        if (orientation)
+        {
+            orientation = false;
+        }
+        else
+        {
+            orientation = true;
         }
     }
 }
