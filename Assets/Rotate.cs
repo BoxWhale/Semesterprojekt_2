@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Rotate : MonoBehaviour, IInteractable
@@ -29,10 +26,6 @@ public class Rotate : MonoBehaviour, IInteractable
     }
     
     public List<GameObject> walkables = new();
-    private void Awake()
-    {
-        //walkables = Children(gameObject);
-    }
 
 
     private void Update()
