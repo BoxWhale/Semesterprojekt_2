@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
             interval += speed * Time.deltaTime; // Multiply by Time.deltaTime for smooth movement
             transform.position = Vector3.Lerp(currentNode.transform.position + Vector3.up, path[0].transform.position + Vector3.up, interval);
 
-            if (interval >= 1f) // Use >= instead of == for floating-point comparison
+            if (interval >= 1f || path[0] == currentNode) // Use >= instead of == for floating-point comparison
             {
                 currentNode = path[0]; // Update currentNode to the new position
                 path.RemoveAt(0);

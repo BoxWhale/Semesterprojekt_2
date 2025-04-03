@@ -1,3 +1,5 @@
+using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class CursorController : MonoBehaviour
@@ -52,7 +54,9 @@ public class CursorController : MonoBehaviour
         Vector2 screenPosition = cursor.ReadValue<Vector2>();
         if (Camera.main == null) return;
         
+        
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(screenPosition.x, screenPosition.y, 0));
+        Debug.DrawLine(ray.origin, ray.origin + ray.direction * 3000, Color.red);
         if (Physics.Raycast(ray, out RaycastHit hit)) 
         {
             NodeID nodeID = hit.collider.gameObject.GetComponent<NodeID>();
@@ -76,6 +80,7 @@ public class CursorController : MonoBehaviour
             if (interactable == null) interactable = hit.collider.gameObject.GetComponentInParent<IInteractable>();
             if (interactable == null) interactable = hit.collider.gameObject.GetComponentInChildren<IInteractable>();
             if (interactable != null) interactable.OnInteract();
+            Debug.LogError("No interactable found");
         }
     }
 }

@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Top
-  m_Shader: {fileID: -6465566751694194690, guid: 4aba0be655180234b859afdc80f6f4b9, type: 3}
-  m_Parent: {fileID: -876546973899608171, guid: 4aba0be655180234b859afdc80f6f4b9, type: 3}
-  m_ModifiedSerializedProperties: 2
+  m_Name: Side +z 1
+  m_Shader: {fileID: -6465566751694194690, guid: 23648a59add217b42b194c2f40373f99, type: 3}
+  m_Parent: {fileID: 2100000, guid: de927a8dce18f684e8c75676f00ca4be, type: 2}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 0
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -26,20 +26,15 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Contrast: 1
-    - _Fresnel: 0
-    - _Invert: 1
-    - _OverLap: 1
-    - _QueueControl: 0
-    - _Split: 0
+    - _Point0_Shift: 0
+    - _Y_Fade: 0.5
+    - _Z_Fade: 0.5
     m_Colors:
-    - _East: {r: 0.3589325, g: 0, b: 1, a: 0}
-    - _Main: {r: 0.49557543, g: 0, b: 1, a: 0}
-    - _Radiant: {r: 0.21960786, g: 0, b: 0.4431373, a: 0}
-    - _West: {r: 0, g: 0.59133935, b: 1, a: 0}
+    - _FadeControle: {r: 1.408, g: 1, b: 0, a: 0}
+    - _Main: {r: 0.23137257, g: 0.9803922, b: 0.058823533, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &4605818061775725161
+--- !u!114 &8870987406298950303
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
