@@ -80,7 +80,7 @@ public class CursorController : MonoBehaviour
             if (interactable == null) interactable = hit.collider.gameObject.GetComponentInParent<IInteractable>();
             if (interactable == null) interactable = hit.collider.gameObject.GetComponentInChildren<IInteractable>();
             if (interactable != null) interactable.OnInteract();
-            Debug.LogError("No interactable found");
+            else Debug.LogError("No interactable found");
         }
     }
 }
