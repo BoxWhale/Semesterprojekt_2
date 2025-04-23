@@ -52,7 +52,8 @@ public class Player : MonoBehaviour
         if (targetNode != null && path.Count > 0)
         {
             interval += speed * Time.deltaTime; // Multiply by Time.deltaTime for smooth movement
-            transform.position = Vector3.Lerp(currentNode.transform.position + Vector3.up, path[0].transform.position + Vector3.up, interval);
+            transform.position = Vector3.Lerp(currentNode.transform.position + currentNode.transform.rotation * Vector3.up, path[0].transform.position + path[0].transform.rotation*Vector3.up, interval);
+            transform.rotation = Quaternion.Slerp(currentNode.transform.rotation, path[0].transform.rotation, interval);
 
             if (interval >= 1f || path[0] == currentNode) // Use >= instead of == for floating-point comparison
             {

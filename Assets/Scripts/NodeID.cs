@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 [ExecuteAlways]
 public class NodeID : MonoBehaviour
@@ -9,8 +10,10 @@ public class NodeID : MonoBehaviour
     public bool autoConnect = true; // If true, the GameObject will autodetect nearby nodes
     [Tooltip("Updates the node detection on runtime to ensure the node is connected to the correct nodes durring position change.\n" +
              "Both Auto connect and Invoke Auto Connect both need to be checked to work, use at your own risk.\n" +
-             " - May cause lag if used with a large number of nodes.")]
+             " - May cause lag if used with a large number of nodes.\n" +
+             " - A less risky approach would be using UnityEventHandler instead, and then invoke DetectAdjacentNodes()")]
     public bool invokeAutoConnect = false; // If true, the GameObject will invoke the autoConnect method on Update()
+    
     private bool initialized = false; // Tracks if runtime initialization has occurred
     public int nodeID;             // Store the extracted ID
     public bool walkable = true;   // Checkable to see whether the tile is walkable or not
@@ -109,7 +112,7 @@ public class NodeID : MonoBehaviour
         {
             if (node != null)
             {
-                Gizmos.DrawLine(transform.position + Vector3.up, node.transform.position + Vector3.up);
+                Gizmos.DrawLine(transform.position + transform.rotation*Vector3.up, node.transform.position + node.transform.rotation * Vector3.up);
             }
         }
     }
