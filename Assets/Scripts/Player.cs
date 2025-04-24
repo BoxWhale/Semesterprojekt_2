@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    BfsManager manager;
+    
+    BfsManager3 manager;
     public float speed;
     private float _interval;
 
@@ -19,25 +20,57 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        CursorController.OnNodeSelected += HandleNodeSelected;
+        CursorController.OnNodeSelected += HandleNodeSelected3;
     }
 
     private void OnDisable()
     {
-        CursorController.OnNodeSelected -= HandleNodeSelected;
+        CursorController.OnNodeSelected -= HandleNodeSelected3;
     }
 
     private void Start()
     {
-        manager = gameObject.GetComponent<BfsManager>();
+        manager = gameObject.GetComponent<BfsManager3>();
     }
 
-    private void HandleNodeSelected(NodeID node)
+    /*private void HandleNodeSelected(NodeID node)
     {
         try
         {
             targetNode = node;
             path = manager.FindPath(currentNode, node);
+            Debug.Log("Shortest Path: " + string.Join(" -> ", path));
+        }
+        catch
+        {
+            Debug.Log("No path found");
+            targetNode = null;
+        }
+    }
+
+    private void HandleNodeSelected2(NodeID node)
+    {
+        targetNode = node;
+        StartCoroutine(manager.FindPath(currentNode, node, path =>
+        {
+            if (path != null)
+            {
+                this.path = path;
+                Debug.Log("Shortest Path: " + string.Join(" -> ", path));
+            }
+            else
+            {
+                Debug.Log("No path found");
+                targetNode = null;
+            }
+        }));
+    }*/
+    private async void HandleNodeSelected3(NodeID node)
+    {
+        try
+        {
+            targetNode = node;
+            path = await manager.FindPath(currentNode, node);
             Debug.Log("Shortest Path: " + string.Join(" -> ", path));
         }
         catch
