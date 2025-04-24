@@ -62,5 +62,9 @@ public class Player : MonoBehaviour
                 interval = 0f;
             }
         }
+        else
+        {
+            transform.position = currentNode.transform.position + currentNode.transform.rotation * Vector3.up;
+        }
     }
 }

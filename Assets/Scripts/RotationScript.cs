@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RotationScript : MonoBehaviour, IInteractable
 {
-
-    //public GameObject playerReference;
-
+    public bool canRotateWithPlayerOn = false;
+    public GameObject Player;
     public List<Vector3> rotatePositions;
     public Vector3 bufferPostion; //Has to visually be the same as the last position
                                   // but with different values that makes it rotate properly
@@ -17,6 +17,8 @@ public class RotationScript : MonoBehaviour, IInteractable
     bool isRotating;
 
     public List<NodeConnection> nodeConnectionsList;
+    public List<int> containedNodesInRotation;
+    //public UnityEvent rotationEvent;
 
     void Start()
     {
@@ -24,10 +26,16 @@ public class RotationScript : MonoBehaviour, IInteractable
         {
             nodeConnectionsList.Add(nodeConnectionElement);
         }
+        foreach(NodeID node in GetComponentsInChildren<NodeID>())
+        {
+            containedNodesInRotation.Add(node.nodeID);
+        }
     }
 
     public void OnInteract()
     {
+        if(!canRotateWithPlayerOn && containedNodesInRotation.Contains(Player.GetComponent<Player>().currentNode.GetComponent<NodeID>().nodeID)) return;
+
         if(!isRotating)
         {
             StartCoroutine(RotateToNextPosition());
