@@ -52,9 +52,9 @@ public class RotationScript : MonoBehaviour, IInteractable
         {
             while(count < 1)
             {
-                transform.eulerAngles = bufferPostion;
+                transform.localEulerAngles = bufferPostion;
                 count += Time.deltaTime*(1/drag);
-                transform.eulerAngles = Vector3.Slerp(bufferPostion, rotatePositions[0], count);
+                transform.localEulerAngles = Vector3.Slerp(bufferPostion, rotatePositions[0], count);
                 yield return new WaitForEndOfFrame();
             }
 
@@ -66,7 +66,7 @@ public class RotationScript : MonoBehaviour, IInteractable
             while(count < 1)
             {
                 count += Time.deltaTime*(1/drag);
-                transform.eulerAngles = Vector3.Slerp(rotatePositions[currentPosition], rotatePositions[nextPosition], count);
+                transform.localEulerAngles = Vector3.Slerp(rotatePositions[currentPosition], rotatePositions[nextPosition], count);
                 yield return new WaitForEndOfFrame();
             }
 
