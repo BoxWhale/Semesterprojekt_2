@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Level2Interact
+  m_Name: Level3Grass
   m_Shader: {fileID: -6465566751694194690, guid: 23648a59add217b42b194c2f40373f99, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -104,7 +104,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _Point0_Shift: -3
+    - _Point0_Shift: -8
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -115,23 +115,23 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WorkflowMode: 1
-    - _X_Fade: 0.08
+    - _X_Fade: 1
     - _Y_Fade: 1
     - _ZWrite: 1
-    - _Z_Fade: -0.27
+    - _Z_Fade: 1
     - _useGlobalColor: 0
     m_Colors:
-    - _Background_color: {r: 0.0627451, g: 0.043137256, b: 0.101960786, a: 0}
+    - _Background_color: {r: 0.0627451, g: 0.039215688, b: 0.101960786, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_x: {r: 0.45299998, g: 0.14436263, b: 0.2638352, a: 0}
-    - _Color_y: {r: 0.566, g: 0.15309837, b: 0.32475415, a: 0}
-    - _Color_z: {r: 0.264, g: 0.10560001, b: 0.23466663, a: 0}
+    - _Color_x: {r: 0.1264706, g: 0.38529426, b: 0.5058824, a: 0}
+    - _Color_y: {r: 0.14840499, g: 0.2704515, b: 0.443, a: 0}
+    - _Color_z: {r: 0.11886, g: 0.21265423, b: 0.283, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FadeControle: {r: 1, g: 1, b: 0, a: 0}
     - _GlobalColor: {r: 1, g: 1, b: 1, a: 0}
     - _LightDirection: {r: -2.18, g: 4.18, b: -0.51, a: 0}
-    - _Main: {r: 0, g: 0.5335631, b: 1, a: 0}
+    - _Main: {r: 1, g: 1, b: 1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
