@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     BfsManager3 manager;
     public float speed;
     private float _interval;
+    public bool allowMovement = true;
 
     public float interval
     {
@@ -32,39 +33,6 @@ public class Player : MonoBehaviour
     {
         manager = gameObject.GetComponent<BfsManager3>();
     }
-
-    /*private void HandleNodeSelected(NodeID node)
-    {
-        try
-        {
-            targetNode = node;
-            path = manager.FindPath(currentNode, node);
-            Debug.Log("Shortest Path: " + string.Join(" -> ", path));
-        }
-        catch
-        {
-            Debug.Log("No path found");
-            targetNode = null;
-        }
-    }
-
-    private void HandleNodeSelected2(NodeID node)
-    {
-        targetNode = node;
-        StartCoroutine(manager.FindPath(currentNode, node, path =>
-        {
-            if (path != null)
-            {
-                this.path = path;
-                Debug.Log("Shortest Path: " + string.Join(" -> ", path));
-            }
-            else
-            {
-                Debug.Log("No path found");
-                targetNode = null;
-            }
-        }));
-    }*/
     private async void HandleNodeSelected3(NodeID node)
     {
         try
@@ -82,11 +50,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (targetNode != null && path.Count > 0)
+        if (targetNode != null && path.Count > 0 && allowMovement)
         {
-            interval += speed * Time.deltaTime; // Multiply by Time.deltaTime for smooth movement
+            interval += speed * Time.deltaTime;
             transform.position = Vector3.Lerp(currentNode.transform.position + currentNode.transform.rotation * Vector3.up, path[0].transform.position + path[0].transform.rotation*Vector3.up, interval);
             transform.rotation = Quaternion.Slerp(currentNode.transform.rotation, path[0].transform.rotation, interval);
+            gameObject.layer = currentNode.gameObject.layer;
 
             if (interval >= 1f || path[0] == currentNode) // Use >= instead of == for floating-point comparison
             {

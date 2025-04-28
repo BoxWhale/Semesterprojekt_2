@@ -62,6 +62,7 @@ public class NodeID : MonoBehaviour
                 return id;
             }
         }
+        Debug.LogError($"NodeID: Failed to extract ID from name '{gameObject.name}'. Ensure the name format is 'NodeName(ID)'.", gameObject);
         return -1; // Return -1 if ID wasn't found
     }
 
@@ -105,6 +106,9 @@ public class NodeID : MonoBehaviour
                 break;
             case >= 7:
                 Gizmos.color = Color.blue; // Number of Listed nodes overwhelms max number of sides of a cube
+                Debug.LogWarning($"NodeID: Node overload detected on {gameObject.name}!\n" +
+                                 "Number of nodes exceeds the number of faces on a cube,\n" +
+                                 "Consider reducing the number of nodes or reduce the detection radius.");
                 break;
         }
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
