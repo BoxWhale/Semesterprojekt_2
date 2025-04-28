@@ -6,10 +6,11 @@ public class BfsManager3 : MonoBehaviour
 {
     /// <summary>
     /// Takes in a start NodeID and target NodeID and returns a path that can be walked on between the 2 points
+    /// Needs to be run in async as it runs on a background thread
     /// </summary>
     /// <param name="startNode"> The start node</param>
     /// <param name="targetNode"> The node of which needs to be reached</param>
-    /// <returns></returns>
+    /// <returns> Returns Graph upon path between Start node and Target node</returns>
     public async Task<List<NodeID>> FindPath(NodeID startNode, NodeID targetNode)
     {
         return await Task.Run(() =>
@@ -28,11 +29,8 @@ public class BfsManager3 : MonoBehaviour
                 NodeID currentNode = queue.Dequeue();
 
                 // Check if we've reached the target
-                if (currentNode == targetNode)
-                {
-                    return ConstructPath(startNode, targetNode, parentMap);
-                }
-
+                if (currentNode == targetNode) return ConstructPath(startNode, targetNode, parentMap);
+                
                 // Add adjacent nodes to the queue
                 foreach (var neighbor in currentNode.nodes)
                 {
@@ -44,7 +42,6 @@ public class BfsManager3 : MonoBehaviour
                     }
                 }
             }
-
             // If no path is found, return null
             return null;
         });

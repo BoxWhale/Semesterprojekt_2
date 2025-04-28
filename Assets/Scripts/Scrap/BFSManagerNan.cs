@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class BfsManager2 : MonoBehaviour
+public class BfsManagerNan : MonoBehaviour
 {
     /// <summary>
     /// Takes in a start NodeID and target NodeID and returns a path that can be walked on between the 2 points
@@ -12,7 +9,7 @@ public class BfsManager2 : MonoBehaviour
     /// <param name="startNode"> The start node</param>
     /// <param name="targetNode"> The node of which needs to be reached</param>
     /// <returns></returns>
-    public IEnumerator FindPath(NodeID startNode, NodeID targetNode, Action<List<NodeID>> callback)
+    public List<NodeID> FindPath(NodeID startNode, NodeID targetNode)
     {
         Queue<NodeID> queue = new Queue<NodeID>();
         Dictionary<NodeID, NodeID> parentMap = new Dictionary<NodeID, NodeID>();
@@ -30,9 +27,7 @@ public class BfsManager2 : MonoBehaviour
             // Check if we've reached the target
             if (currentNode == targetNode)
             {
-                List<NodeID> path = ConstructPath(startNode, targetNode, parentMap);
-                callback(path);
-                yield break;
+                return ConstructPath(startNode, targetNode, parentMap);
             }
 
             // Add adjacent nodes to the queue
@@ -45,10 +40,9 @@ public class BfsManager2 : MonoBehaviour
                     parentMap[neighbor] = currentNode; // Map this node to its parent
                 }
             }
-            yield return null;
         }
         // If no path is found, return null
-        callback(null);
+        return null;
     }
 
     private List<NodeID> ConstructPath(NodeID startNode, NodeID targetNode, Dictionary<NodeID, NodeID> parentMap)

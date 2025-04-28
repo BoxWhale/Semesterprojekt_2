@@ -2458,7 +2458,7 @@ GameObject:
   - component: {fileID: 1322352690}
   - component: {fileID: 1322352689}
   - component: {fileID: 1322352688}
-  - component: {fileID: 1322352687}
+  - component: {fileID: 1322352691}
   - component: {fileID: 1322352686}
   - component: {fileID: 1322352685}
   - component: {fileID: 1322352684}
@@ -2561,18 +2561,6 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   node: {fileID: 0}
---- !u!114 &1322352687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1322352683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5da876d5248b57641aa5ed01029bb7c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &1322352688
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2641,6 +2629,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1322352691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322352683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed167a5a7bd96e6419e55c9edf855504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1391460029
 GameObject:
   m_ObjectHideFlags: 0

@@ -98,6 +98,7 @@ public class Player : MonoBehaviour
         else
         {
             transform.position = currentNode.transform.position + currentNode.transform.rotation * Vector3.up;
+            transform.rotation = currentNode.transform.rotation;
         }
     }
 }
