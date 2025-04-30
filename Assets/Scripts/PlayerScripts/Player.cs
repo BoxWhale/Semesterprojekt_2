@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     {
         manager = gameObject.GetComponent<BfsManager3>();
     }
-    private async void HandleNodeSelected3(NodeID node)
+    public async void HandleNodeSelected3(NodeID node)
     {
         try
         {

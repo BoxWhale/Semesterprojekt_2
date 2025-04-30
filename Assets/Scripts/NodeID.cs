@@ -62,7 +62,7 @@ public class NodeID : MonoBehaviour
                 return id;
             }
         }
-        Debug.LogError($"NodeID: Failed to extract ID from name '{gameObject.name}'. Ensure the name format is 'NodeName(ID)'.", gameObject);
+        //Debug.LogError($"NodeID: Failed to extract ID from name '{gameObject.name}'. Ensure the name format is 'NodeName(ID)'.", gameObject);
         return -1; // Return -1 if ID wasn't found
     }
 

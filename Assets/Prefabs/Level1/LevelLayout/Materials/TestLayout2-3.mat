@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GloryCubeNaturalTest
-  m_Shader: {fileID: -6465566751694194690, guid: edfbad288adc7184687e0ff63c22530d, type: 3}
+  m_Name: TestLayout2-3
+  m_Shader: {fileID: -6465566751694194690, guid: 23648a59add217b42b194c2f40373f99, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 84a03c54f258a4349af9740f18dde280, type: 3}
+        m_Texture: {fileID: 2800000, guid: aaa8422d1ed26aa469e9d7e33d8436ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 84a03c54f258a4349af9740f18dde280, type: 3}
+        m_Texture: {fileID: 2800000, guid: aaa8422d1ed26aa469e9d7e33d8436ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -108,7 +108,6 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ShadowHardEdge: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -125,18 +124,18 @@ Material:
     - _Background_color: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_x: {r: 0.30588236, g: 0.42352945, b: 0.5921569, a: 0}
-    - _Color_y: {r: 0.79215693, g: 0.73333335, b: 0.5686275, a: 0}
-    - _Color_z: {r: 0.454902, g: 0.59607846, b: 0.6, a: 0}
+    - _Color_x: {r: 0, g: 0.049598202, b: 1, a: 0}
+    - _Color_y: {r: 0, g: 0.049598202, b: 1, a: 0}
+    - _Color_z: {r: 0, g: 0.049598202, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FadeControle: {r: 1, g: 1, b: 0, a: 0}
     - _GlobalColor: {r: 1, g: 1, b: 1, a: 0}
     - _LightDirection: {r: -0.2, g: 1, b: -0.05, a: 0}
-    - _Main: {r: 1, g: 1, b: 1, a: 0}
+    - _Main: {r: 0, g: 0.5335631, b: 1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &1664159268669993126
+--- !u!114 &8768692671811789831
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
