@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     public float speed;
     private float _interval;
     public bool allowMovement = true;
-
     public float interval
     {
         get => _interval;
