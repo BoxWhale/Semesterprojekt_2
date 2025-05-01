@@ -1,17 +1,15 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class CursorController : MonoBehaviour
 {
+    public delegate void NodeSelectedHandler(NodeID node);
+
     public InputActionMap mouse;
     public InputAction cursor;
     public InputAction click;
     public InputAction interact;
     public NodeID node;
-
-    public delegate void NodeSelectedHandler(NodeID node);
-    public static event NodeSelectedHandler OnNodeSelected;
 
     private void Awake()
     {
@@ -19,6 +17,13 @@ public class CursorController : MonoBehaviour
         cursor = mouse.FindAction("Position");
         click = mouse.FindAction("Click");
         interact = mouse.FindAction("RClick");
+    }
+
+    private void Update()
+    {
+        if (click.WasReleasedThisFrame()) LeftClick();
+
+        if (interact.WasReleasedThisFrame()) RightClick();
     }
 
     private void OnEnable()
@@ -35,48 +40,36 @@ public class CursorController : MonoBehaviour
         cursor.Disable();
     }
 
-    private void Update()
-    {
-        if (click.WasReleasedThisFrame()) 
-        {
-            LeftClick();
-        }
-
-        if (interact.WasReleasedThisFrame())
-        {
-            RightClick();
-        }
-    }
+    public static event NodeSelectedHandler OnNodeSelected;
 
     private void LeftClick()
     {
         Debug.Log("Left mouse button pressed");
-        Vector2 screenPosition = cursor.ReadValue<Vector2>();
+        var screenPosition = cursor.ReadValue<Vector2>();
         if (Camera.main == null) return;
-        
-        
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(screenPosition.x, screenPosition.y, 0));
+
+
+        var ray = Camera.main.ScreenPointToRay(new Vector3(screenPosition.x, screenPosition.y, 0));
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * 3000, Color.red);
-        if (Physics.Raycast(ray, out RaycastHit hit)) 
+        if (Physics.Raycast(ray, out var hit))
         {
-            NodeID nodeID = hit.collider.gameObject.GetComponent<NodeID>();
+            var nodeID = hit.collider.gameObject.GetComponent<NodeID>();
             if (nodeID == null) return;
-            Debug.Log(nodeID.nodeID); 
+            Debug.Log(nodeID.nodeID);
             OnNodeSelected?.Invoke(nodeID);
         }
-        
     }
 
     private void RightClick()
     {
         Debug.Log("Right mouse button pressed");
-        Vector2 screenPosition = cursor.ReadValue<Vector2>();
+        var screenPosition = cursor.ReadValue<Vector2>();
         if (Camera.main == null) return;
-        
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(screenPosition.x, screenPosition.y, 0));
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        { 
-            IInteractable interactable = hit.collider.gameObject.GetComponent<IInteractable>();
+
+        var ray = Camera.main.ScreenPointToRay(new Vector3(screenPosition.x, screenPosition.y, 0));
+        if (Physics.Raycast(ray, out var hit))
+        {
+            var interactable = hit.collider.gameObject.GetComponent<IInteractable>();
             if (interactable == null) interactable = hit.collider.gameObject.GetComponentInParent<IInteractable>();
             if (interactable == null) interactable = hit.collider.gameObject.GetComponentInChildren<IInteractable>();
             if (interactable != null) interactable.OnInteract();
@@ -84,5 +77,3 @@ public class CursorController : MonoBehaviour
         }
     }
 }
-
-
