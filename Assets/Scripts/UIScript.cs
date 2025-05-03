@@ -1,11 +1,8 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIScript : MonoBehaviour
 {
-    
-
     public GameObject pauseScreen;
 
     public bool gameIsPaused;
@@ -13,15 +10,14 @@ public class UIScript : MonoBehaviour
     public GameObject player;
 
 
-    void Update()
+    private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(gameIsPaused) ResumeGame();
+            if (gameIsPaused) ResumeGame();
             else PauseGame();
         }
     }
-
 
 
     public void PauseGame()
@@ -42,7 +38,8 @@ public class UIScript : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        SceneLoader.LoadLevel(SceneLoader.GetCurrentLevelSceneName());
+        SceneLoader.ShowLoadingScreen();
     }
 
     public void QuitGame()
@@ -55,8 +52,9 @@ public class UIScript : MonoBehaviour
     public void GoToMainMenu()
     {
         Debug.Log("Go to main menu");
-        SceneManager.LoadSceneAsync("MainMenu");
+        SceneLoader.LoadLevel("MainMenu");
+        SceneLoader.ShowLoadingScreen();
     }
-
+    
 
 }

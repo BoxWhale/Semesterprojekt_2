@@ -8,64 +8,50 @@ public class Rotate : MonoBehaviour, IInteractable
     public float drag;
     public bool orientation;
 
-    public List<GameObject> Children(GameObject parent)
-    {
-        List<GameObject> children = new List<GameObject>();
-        foreach (Transform child in parent.transform)
-        {
-            children.Add(child.gameObject);
-        }
-        return children;
-    }
+    public List<GameObject> walkables = new();
 
     private float _count;
+
     public float count
     {
         get => _count;
         set => _count = Mathf.Clamp(value, 0, 1);
     }
-    
-    public List<GameObject> walkables = new();
 
 
     private void Update()
     {
-        
         if (orientation && transform.localRotation.eulerAngles.z > maxRotation.z)
         {
-            count += Time.deltaTime*(1/drag);
-            transform.eulerAngles = Vector3.Slerp(minRotation,maxRotation,count);
+            count += Time.deltaTime * (1 / drag);
+            transform.eulerAngles = Vector3.Slerp(minRotation, maxRotation, count);
         }
         else
         {
-            count -= Time.deltaTime*(1/drag);
-            transform.eulerAngles = Vector3.Slerp(minRotation,maxRotation,count);
+            count -= Time.deltaTime * (1 / drag);
+            transform.eulerAngles = Vector3.Slerp(minRotation, maxRotation, count);
         }
 
-        if (count == 1) 
-        {
-            foreach (GameObject node in walkables)
-            {
+        if (count == 1)
+            foreach (var node in walkables)
                 node.GetComponent<NodeID>().walkable = true;
-            }
-        }
         else if (count == 0)
-        {
-            foreach (GameObject node in walkables)
-            {
+            foreach (var node in walkables)
                 node.GetComponent<NodeID>().walkable = false;
-            }
-        }
     }
+
     public void OnInteract()
     {
         if (orientation)
-        {
             orientation = false;
-        }
         else
-        {
             orientation = true;
-        }
+    }
+
+    public List<GameObject> Children(GameObject parent)
+    {
+        var children = new List<GameObject>();
+        foreach (Transform child in parent.transform) children.Add(child.gameObject);
+        return children;
     }
 }

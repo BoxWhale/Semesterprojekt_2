@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GlobalColorControle : MonoBehaviour
@@ -9,7 +8,7 @@ public class GlobalColorControle : MonoBehaviour
     [Tooltip("Name of the global shader property (e.g., '_GlobalColor').")]
     public string globalColorPropertyName = "_GlobalColor";
 
-    void Update()
+    private void Update()
     {
         // Set the global color property so that any shader referencing this property gets updated
         Shader.SetGlobalColor(globalColorPropertyName, globalColor);
