@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     public float speed;
     public bool allowMovement = true;
 
+    public bool ignoreCooldown = false;
     public NodeID currentNode;
     public NodeID targetNode;
     public List<NodeID> path;
@@ -30,11 +31,10 @@ public class Player : MonoBehaviour
         {
             interval += speed * Time.deltaTime;
             transform.position =
-                Vector3.Lerp(currentNode.transform.position + currentNode.transform.rotation * Vector3.up,
-                    path[0].transform.position + path[0].transform.rotation * Vector3.up, interval);
+                Vector3.Lerp(currentNode.transform.position + currentNode.transform.rotation * Vector3.up, 
+                             path[0].transform.position + path[0].transform.rotation * Vector3.up, interval);
             transform.rotation = Quaternion.Slerp(currentNode.transform.rotation, path[0].transform.rotation, interval);
             gameObject.layer = currentNode.gameObject.layer;
-
             if (interval >= 1f || path[0] == currentNode) // Use >= instead of == for floating-point comparison
             {
                 currentNode = path[0]; // Update currentNode to the new position
@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
         try
         {
             targetNode = node;
+            if (path.Count != 0 && !ignoreCooldown) return;
             path = await manager.FindPath(currentNode, node);
             Debug.Log("Shortest Path: " + string.Join(" -> ", path));
         }

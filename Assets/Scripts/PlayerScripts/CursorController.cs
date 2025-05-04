@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,23 @@ public class CursorController : MonoBehaviour
     public InputAction interact;
     public NodeID node;
 
+    
+    [Header("Mouse Settings"), Range(0f,2f)]
+    public float cooldownTime = 0.5f;
+    [SerializeField]private float _lmbCooldown;
+    public float lmbCooldown
+    {
+        get => _lmbCooldown;
+        set => _lmbCooldown = Mathf.Clamp(value, 0f, cooldownTime);
+    }
+    
+    [SerializeField]private float _rmbCooldown;
+    public float rmbCooldown
+    {
+        get => _rmbCooldown;
+        set => _rmbCooldown = Mathf.Clamp(value, 0f, cooldownTime);
+    }
+    
     private void Awake()
     {
         mouse = InputSystem.actions.FindActionMap("Mouse");
@@ -21,8 +39,12 @@ public class CursorController : MonoBehaviour
 
     private void Update()
     {
-        if (click.WasReleasedThisFrame()) LeftClick();
+        // Only decrement cooldowns when they are above 0
+        if (lmbCooldown > 0f) lmbCooldown -= Time.deltaTime;
+    
+        if (rmbCooldown > 0f) rmbCooldown -= Time.deltaTime;
 
+        if (click.WasReleasedThisFrame()) LeftClick();
         if (interact.WasReleasedThisFrame()) RightClick();
     }
 
@@ -42,13 +64,15 @@ public class CursorController : MonoBehaviour
 
     public static event NodeSelectedHandler OnNodeSelected;
 
-    private void LeftClick()
+    private void RightClick()
     {
-        Debug.Log("Left mouse button pressed");
+        Debug.Log("Right mouse button pressed");
+
+        if (rmbCooldown > 0f) return;
+        
         var screenPosition = cursor.ReadValue<Vector2>();
         if (Camera.main == null) return;
-
-
+            
         var ray = Camera.main.ScreenPointToRay(new Vector3(screenPosition.x, screenPosition.y, 0));
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * 3000, Color.red);
         if (Physics.Raycast(ray, out var hit))
@@ -56,23 +80,29 @@ public class CursorController : MonoBehaviour
             var nodeID = hit.collider.gameObject.GetComponent<NodeID>();
             if (nodeID == null) return;
             Debug.Log(nodeID.nodeID);
+            lmbCooldown = cooldownTime;
             OnNodeSelected?.Invoke(nodeID);
         }
     }
 
-    private void RightClick()
+    private void LeftClick()
     {
-        Debug.Log("Right mouse button pressed");
+        Debug.Log("Left mouse button pressed");
+        if (lmbCooldown > 0f) return;
         var screenPosition = cursor.ReadValue<Vector2>();
         if (Camera.main == null) return;
 
         var ray = Camera.main.ScreenPointToRay(new Vector3(screenPosition.x, screenPosition.y, 0));
         if (Physics.Raycast(ray, out var hit))
         {
-            var interactable = hit.collider.gameObject.GetComponent<IInteractable>();
-            if (interactable == null) interactable = hit.collider.gameObject.GetComponentInParent<IInteractable>();
-            if (interactable == null) interactable = hit.collider.gameObject.GetComponentInChildren<IInteractable>();
-            if (interactable != null) interactable.OnInteract();
+            var interactable =  hit.collider.gameObject.GetComponent<IInteractable>() ?? 
+                                hit.collider.gameObject.GetComponentInParent<IInteractable>() ?? 
+                                hit.collider.gameObject.GetComponentInChildren<IInteractable>();
+            if (interactable != null)
+            {
+                lmbCooldown = cooldownTime;
+                interactable.OnInteract();
+            }
             else Debug.LogError("No interactable found");
         }
     }

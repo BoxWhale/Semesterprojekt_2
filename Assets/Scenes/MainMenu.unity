@@ -3006,6 +3006,10 @@ PrefabInstance:
       propertyPath: currentNode
       value: 
       objectReference: {fileID: 743439391}
+    - target: {fileID: 7825122200556705712, guid: 11159e4ad356335479a64f1b428b0354, type: 3}
+      propertyPath: ignoreCooldown
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

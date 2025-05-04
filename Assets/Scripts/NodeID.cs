@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -32,6 +33,34 @@ public class NodeID : MonoBehaviour
         if (invokeAutoConnect && autoConnect && Application.isPlaying) DetectAdjacentNodes();
     }
 
+    // Add at the top with other fields
+    [Tooltip("Marks this node as the goal node. Only one node can be the goal in a scene.")]
+    [SerializeField] private bool isGoal;
+    
+    // Static reference to track the current goal node
+    private static NodeID currentGoalNode;
+    public bool IsGoal
+    {
+        get => isGoal;
+        set
+        {
+            if (value && currentGoalNode != null && currentGoalNode != this)
+            {
+                Debug.LogWarning($"Another node ({currentGoalNode.gameObject.name}) is already set as goal. Unchecking it.");
+                currentGoalNode.isGoal = false;
+            }
+            
+            isGoal = value;
+            if (value)
+            {
+                currentGoalNode = this;
+            }
+            else if (currentGoalNode == this)
+            {
+                currentGoalNode = null;
+            }
+        }
+    }
     private void OnDrawGizmos()
     {
         switch (nodes.Count) // Visual indicator for if Nodes have been added to List
@@ -52,19 +81,25 @@ public class NodeID : MonoBehaviour
                                  "Consider reducing the number of nodes or reduce the detection radius.");
                 break;
         }
-
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        Handles.Label(transform.position, nodeID.ToString()); // Displays the ID of the node in the scene view
+        Gizmos.DrawWireSphere(transform.position, detectionRadius); // Draws a wire sphere around the node to show the detection radius
         foreach (var node in nodes)
             if (node != null)
                 Gizmos.DrawLine(transform.position + transform.rotation * Vector3.up,
                     node.transform.position + node.transform.rotation * Vector3.up);
+        if (!IsGoal) return;
+        Gizmos.DrawCube(transform.position + transform.rotation * Vector3.up, new Vector3(0.2f, 0.2f, 0.2f));
     }
+        
 
     private void OnValidate()
     {
         // Skip execution during runtime
         if (Application.isPlaying) return;
-
+        
+        if (isGoal && currentGoalNode != null && currentGoalNode != this) currentGoalNode.isGoal = false;
+        if (isGoal) currentGoalNode = this;
+        
         // Extract the ID from the GameObject's name
         nodeID = ExtractIDFromName(gameObject.name);
 
