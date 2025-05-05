@@ -1256,6 +1256,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1632717568054714741, guid: 56585fb1c237b3d429ad353da4509325, type: 3}
+      propertyPath: isGoal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632717568054714741, guid: 56585fb1c237b3d429ad353da4509325, type: 3}
       propertyPath: nodeID
       value: 12
       objectReference: {fileID: 0}
@@ -1729,6 +1733,10 @@ PrefabInstance:
     - target: {fileID: 1500052666062190167, guid: 56585fb1c237b3d429ad353da4509325, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632717568054714741, guid: 56585fb1c237b3d429ad353da4509325, type: 3}
+      propertyPath: isGoal
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1632717568054714741, guid: 56585fb1c237b3d429ad353da4509325, type: 3}
       propertyPath: nodeID
@@ -5368,7 +5376,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 740402099277197148, guid: 11159e4ad356335479a64f1b428b0354, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1113646269409424240, guid: 11159e4ad356335479a64f1b428b0354, type: 3}
       propertyPath: m_Name
@@ -5376,7 +5384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1113646269409424240, guid: 11159e4ad356335479a64f1b428b0354, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1472982730511484184, guid: 11159e4ad356335479a64f1b428b0354, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5420,19 +5428,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3956833521282863761, guid: 11159e4ad356335479a64f1b428b0354, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4262680094367572236, guid: 11159e4ad356335479a64f1b428b0354, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6726149331467185358, guid: 11159e4ad356335479a64f1b428b0354, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7825122200556705712, guid: 11159e4ad356335479a64f1b428b0354, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7825122200556705712, guid: 11159e4ad356335479a64f1b428b0354, type: 3}
       propertyPath: currentNode
@@ -6094,7 +6102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &5630189917745169423
 MeshFilter:
   m_ObjectHideFlags: 0

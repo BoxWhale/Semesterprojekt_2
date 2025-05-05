@@ -13,6 +13,8 @@ public class BfsManager3 : MonoBehaviour
     /// <returns> Returns Graph upon path between Start node and Target node</returns>
     public async Task<List<NodeID>> FindPath(NodeID startNode, NodeID targetNode)
     {
+        if (!startNode.walkable || !targetNode.walkable)
+            return null;
         return await Task.Run(() =>
         {
             var queue = new Queue<NodeID>();

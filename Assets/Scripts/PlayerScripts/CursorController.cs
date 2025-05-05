@@ -11,23 +11,7 @@ public class CursorController : MonoBehaviour
     public InputAction click;
     public InputAction interact;
     public NodeID node;
-
     
-    [Header("Mouse Settings"), Range(0f,2f)]
-    public float cooldownTime = 0.5f;
-    [SerializeField]private float _lmbCooldown;
-    public float lmbCooldown
-    {
-        get => _lmbCooldown;
-        set => _lmbCooldown = Mathf.Clamp(value, 0f, cooldownTime);
-    }
-    
-    [SerializeField]private float _rmbCooldown;
-    public float rmbCooldown
-    {
-        get => _rmbCooldown;
-        set => _rmbCooldown = Mathf.Clamp(value, 0f, cooldownTime);
-    }
     
     private void Awake()
     {
@@ -40,10 +24,6 @@ public class CursorController : MonoBehaviour
     private void Update()
     {
         // Only decrement cooldowns when they are above 0
-        if (lmbCooldown > 0f) lmbCooldown -= Time.deltaTime;
-    
-        if (rmbCooldown > 0f) rmbCooldown -= Time.deltaTime;
-
         if (click.WasReleasedThisFrame()) LeftClick();
         if (interact.WasReleasedThisFrame()) RightClick();
     }
@@ -68,7 +48,6 @@ public class CursorController : MonoBehaviour
     {
         Debug.Log("Right mouse button pressed");
 
-        if (rmbCooldown > 0f) return;
         
         var screenPosition = cursor.ReadValue<Vector2>();
         if (Camera.main == null) return;
@@ -78,17 +57,17 @@ public class CursorController : MonoBehaviour
         if (Physics.Raycast(ray, out var hit))
         {
             var nodeID = hit.collider.gameObject.GetComponent<NodeID>();
-            if (nodeID == null) return;
-            Debug.Log(nodeID.nodeID);
-            lmbCooldown = cooldownTime;
-            OnNodeSelected?.Invoke(nodeID);
+            if (nodeID != null)
+            {
+                Debug.Log(nodeID.nodeID);
+                OnNodeSelected?.Invoke(nodeID);
+            }
         }
     }
 
     private void LeftClick()
     {
         Debug.Log("Left mouse button pressed");
-        if (lmbCooldown > 0f) return;
         var screenPosition = cursor.ReadValue<Vector2>();
         if (Camera.main == null) return;
 
@@ -100,7 +79,6 @@ public class CursorController : MonoBehaviour
                                 hit.collider.gameObject.GetComponentInChildren<IInteractable>();
             if (interactable != null)
             {
-                lmbCooldown = cooldownTime;
                 interactable.OnInteract();
             }
             else Debug.LogError("No interactable found");

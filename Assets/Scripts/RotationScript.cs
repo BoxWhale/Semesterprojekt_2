@@ -30,11 +30,18 @@ public class RotationScript : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        if (!canRotateWithPlayerOn &&
+        // If rotation is not allowed with player on AND player is on a node in the rotation, prevent rotation
+        if (!canRotateWithPlayerOn && 
             containedNodesInRotation.Contains(Player.GetComponent<Player>().currentNode.GetComponent<NodeID>().nodeID))
+        {
             return;
+        }
 
-        if (!isRotating) StartCoroutine(RotateToNextPosition());
+        // Otherwise allow rotation if not already rotating
+        if (!isRotating)
+        {
+            StartCoroutine(RotateToNextPosition());
+        }
     }
 
     public IEnumerator RotateToNextPosition()

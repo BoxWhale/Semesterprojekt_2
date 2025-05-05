@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
     public float speed;
     public bool allowMovement = true;
 
-    public bool ignoreCooldown = false;
     public NodeID currentNode;
     public NodeID targetNode;
     public List<NodeID> path;
@@ -23,6 +22,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         manager = gameObject.GetComponent<BfsManager3>();
+        path = new List<NodeID>();
     }
 
     private void Update()
@@ -34,10 +34,10 @@ public class Player : MonoBehaviour
                 Vector3.Lerp(currentNode.transform.position + currentNode.transform.rotation * Vector3.up, 
                              path[0].transform.position + path[0].transform.rotation * Vector3.up, interval);
             transform.rotation = Quaternion.Slerp(currentNode.transform.rotation, path[0].transform.rotation, interval);
-            gameObject.layer = currentNode.gameObject.layer;
             if (interval >= 1f || path[0] == currentNode) // Use >= instead of == for floating-point comparison
             {
                 currentNode = path[0]; // Update currentNode to the new position
+                gameObject.layer = currentNode.gameObject.layer;
                 path.RemoveAt(0);
                 interval = 0f;
             }
@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
         {
             transform.position = currentNode.transform.position + currentNode.transform.rotation * Vector3.up;
             transform.rotation = currentNode.transform.rotation;
+            gameObject.layer = currentNode.gameObject.layer;
         }
     }
 
@@ -58,20 +59,36 @@ public class Player : MonoBehaviour
     {
         CursorController.OnNodeSelected -= HandleNodeSelected3;
     }
+    private bool IsValidMovement(NodeID targetNode)
+    {
+        return targetNode != null && 
+               targetNode.walkable && 
+               targetNode.gameObject.layer == currentNode.gameObject.layer;
+    }
 
     public async void HandleNodeSelected3(NodeID node)
     {
         try
         {
-            targetNode = node;
-            if (path.Count != 0 && !ignoreCooldown) return;
-            path = await manager.FindPath(currentNode, node);
-            Debug.Log("Shortest Path: " + string.Join(" -> ", path));
+            // Only process new path if target changed or no current path exists
+            if (node != targetNode || path.Count == 0)
+            {
+                targetNode = node;
+                var newPath = await manager.FindPath(currentNode, node);
+            
+                // Only update path if we found a valid one
+                if (newPath != null && newPath.Count > 0)
+                {
+                    path = newPath;
+                    Debug.Log("Shortest Path: " + string.Join(" -> ", path));
+                }
+            }
         }
         catch
         {
             Debug.Log("No path found");
             targetNode = null;
+            path.Clear();
         }
     }
 }

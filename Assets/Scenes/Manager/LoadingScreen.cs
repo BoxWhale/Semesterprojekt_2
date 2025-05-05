@@ -14,11 +14,21 @@ public class LoadingScreen : MonoBehaviour
 
     [SerializeField] private float fadeDuration = 0.2f;
 
+    private IEnumerator DummyLoadingTask()
+    {
+        for (int i = 0; i <= 100; i += 4)
+        {
+            UpdateProgress(i);
+            UpdateInfo($"Loading dummy data... Step {i/10} of 10");
+            yield return new WaitForSeconds(0.5f); // Half second delay between updates
+        }
+    }
+
     private void Awake()
     {
         UpdateInfo("");
         UpdateProgress(-1f);
-        //SceneLoader.LoadLevel("MainMenu");
+        Tasks.Push(DummyLoadingTask());
         StartCoroutine(LoadingScreenFadeIn());
     }
 

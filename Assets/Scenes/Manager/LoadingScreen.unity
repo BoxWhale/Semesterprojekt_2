@@ -132,6 +132,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2089617302}
     m_Modifications:
+    - target: {fileID: 2485393571600943181, guid: 898ba2b3b03943d46b1e35ab0204ed89, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1200
+      objectReference: {fileID: 0}
     - target: {fileID: 3226869053030348683, guid: 898ba2b3b03943d46b1e35ab0204ed89, type: 3}
       propertyPath: m_Name
       value: Background
