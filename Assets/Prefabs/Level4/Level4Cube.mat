@@ -118,7 +118,7 @@ Material:
     - _X_Fade: 1
     - _Y_Fade: 1
     - _ZWrite: 1
-    - _Z_Fade: 1
+    - _Z_Fade: 0
     - _useGlobalColor: 0
     m_Colors:
     - _Background_color: {r: 0.0627451, g: 0.039215688, b: 0.101960786, a: 0}
