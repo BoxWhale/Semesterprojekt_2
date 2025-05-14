@@ -35,7 +35,9 @@ public class NodeID : MonoBehaviour
 
     // Add at the top with other fields
     [Tooltip("Marks this node as the goal node. Only one node can be the goal in a scene.")]
-    [SerializeField] private bool isGoal;
+    public bool isGoal;
+
+    [ShowIf("isGoal")]public string sceneName;
     
     // Static reference to track the current goal node
     private static NodeID currentGoalNode;
@@ -61,6 +63,7 @@ public class NodeID : MonoBehaviour
             }
         }
     }
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         switch (nodes.Count) // Visual indicator for if Nodes have been added to List
@@ -82,6 +85,7 @@ public class NodeID : MonoBehaviour
                 break;
         }
         Handles.Label(transform.position, nodeID.ToString()); // Displays the ID of the node in the scene view
+        
         Gizmos.DrawWireSphere(transform.position, detectionRadius); // Draws a wire sphere around the node to show the detection radius
         foreach (var node in nodes)
             if (node != null)
@@ -90,7 +94,7 @@ public class NodeID : MonoBehaviour
         if (!IsGoal) return;
         Gizmos.DrawCube(transform.position + transform.rotation * Vector3.up, new Vector3(0.2f, 0.2f, 0.2f));
     }
-        
+#endif //Gizmos draw for editor only
 
     private void OnValidate()
     {
@@ -122,6 +126,7 @@ public class NodeID : MonoBehaviour
         return -1; // Return -1 if ID wasn't found
     }
 
+    //Tall demand on performance, use with caution
     public void DetectAdjacentNodes()
     {
         // Create a temporary list to store newly detected nodes
@@ -138,5 +143,11 @@ public class NodeID : MonoBehaviour
 
         // Update the nodes list only if there are changes
         if (!nodes.SequenceEqual(newNodes)) nodes = newNodes;
+    }
+
+    public void loadSceneInvoke()
+    {
+        SceneLoader.LoadLevel(sceneName);
+        SceneLoader.ShowLoadingScreen();
     }
 }

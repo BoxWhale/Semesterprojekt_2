@@ -71,7 +71,7 @@ public class CursorController : MonoBehaviour
         var screenPosition = cursor.ReadValue<Vector2>();
         if (Camera.main == null) return;
 
-        var ray = Camera.main.ScreenPointToRay(new Vector3(screenPosition.x, screenPosition.y, 0));
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(screenPosition.x, screenPosition.y, 0));
         if (Physics.Raycast(ray, out var hit))
         {
             var interactable =  hit.collider.gameObject.GetComponent<IInteractable>() ?? 

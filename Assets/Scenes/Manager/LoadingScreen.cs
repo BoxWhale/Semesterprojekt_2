@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
 public class LoadingScreen : MonoBehaviour
 {
     public static Stack<IEnumerator> Tasks = new();
@@ -28,7 +27,7 @@ public class LoadingScreen : MonoBehaviour
     {
         UpdateInfo("");
         UpdateProgress(-1f);
-        Tasks.Push(DummyLoadingTask());
+        //Tasks.Push(DummyLoadingTask());
         StartCoroutine(LoadingScreenFadeIn());
     }
 

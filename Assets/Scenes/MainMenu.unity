@@ -2207,7 +2207,7 @@ MonoBehaviour:
   playNodeID: {fileID: 644150402}
   exitNodeID: {fileID: 381482063}
   centerNodeID: {fileID: 743439391}
-  startLevelSceneName: Level2
+  startLevelSceneName: Level1
   Player: {fileID: 2029232580}
   PlaySlider: {fileID: 439430552}
   ExitSlider: {fileID: 234335245}

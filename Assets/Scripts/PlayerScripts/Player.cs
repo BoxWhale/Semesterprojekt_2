@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     private float _interval;
 
     private BfsManager3 manager;
+    private bool _invokeNextScene = false;
 
     public float interval
     {
@@ -27,6 +29,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (path.Count == 0 && currentNode.IsGoal && !_invokeNextScene)
+        {
+            _invokeNextScene = true;
+            currentNode.loadSceneInvoke();
+            return;
+        }
+        
         if (targetNode != null && path.Count > 0 && allowMovement)
         {
             interval += speed * Time.deltaTime;
