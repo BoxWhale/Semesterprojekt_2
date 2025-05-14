@@ -318,6 +318,8 @@ MonoBehaviour:
   walkable: 1
   nodes: []
   detectionRadius: 0.6
+  isGoal: 0
+  sceneName: 
 --- !u!65 &937346585271294758
 BoxCollider:
   m_ObjectHideFlags: 0

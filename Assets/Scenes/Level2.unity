@@ -3944,6 +3944,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3584191617597824210, guid: a7080ba1380e0a947b9030cf59c4d903, type: 3}
+      propertyPath: sceneName
+      value: Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584191617597824210, guid: a7080ba1380e0a947b9030cf59c4d903, type: 3}
       propertyPath: autoConnect
       value: 1
       objectReference: {fileID: 0}

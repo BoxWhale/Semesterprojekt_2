@@ -40,26 +40,26 @@ public class NodeID : MonoBehaviour
     [ShowIf("isGoal")]public string sceneName;
     
     // Static reference to track the current goal node
-    private static NodeID currentGoalNode;
+    private static NodeID _iNodeID;
     public bool IsGoal
     {
         get => isGoal;
         set
         {
-            if (value && currentGoalNode != null && currentGoalNode != this)
+            if (value && _iNodeID != null && _iNodeID != this)
             {
-                Debug.LogWarning($"Another node ({currentGoalNode.gameObject.name}) is already set as goal. Unchecking it.");
-                currentGoalNode.isGoal = false;
+                Debug.LogWarning($"Another node ({_iNodeID.gameObject.name}) is already set as goal. Unchecking it.");
+                _iNodeID.isGoal = false;
             }
             
             isGoal = value;
             if (value)
             {
-                currentGoalNode = this;
+                _iNodeID = this;
             }
-            else if (currentGoalNode == this)
+            else if (_iNodeID == this)
             {
-                currentGoalNode = null;
+                _iNodeID = null;
             }
         }
     }
@@ -101,8 +101,8 @@ public class NodeID : MonoBehaviour
         // Skip execution during runtime
         if (Application.isPlaying) return;
         
-        if (isGoal && currentGoalNode != null && currentGoalNode != this) currentGoalNode.isGoal = false;
-        if (isGoal) currentGoalNode = this;
+        if (isGoal && _iNodeID != null && _iNodeID != this) _iNodeID.isGoal = false;
+        if (isGoal) _iNodeID = this;
         
         // Extract the ID from the GameObject's name
         nodeID = ExtractIDFromName(gameObject.name);
@@ -119,11 +119,22 @@ public class NodeID : MonoBehaviour
             var endIndex = name.IndexOf(")");
 
             var idString = name.Substring(startIndex, endIndex - startIndex);
-            if (int.TryParse(idString, out var id)) return id;
+            if (int.TryParse(idString, out var id))
+            {
+                // Ensure the ID is unique
+                HashSet<int> existingIDs = new HashSet<int>(FindObjectsOfType<NodeID>()
+                    .Where(node => node != this)
+                    .Select(node => node.nodeID));
+                
+                // Increment the ID until a unique one is found
+                while (existingIDs.Contains(id)) id++;
+                
+                // Update the GameObject's name with the unique ID
+                gameObject.name = $"{name.Substring(0, startIndex - 1)}({id})";
+                return id;
+            }
         }
-
-        //Debug.LogError($"NodeID: Failed to extract ID from name '{gameObject.name}'. Ensure the name format is 'NodeName(ID)'.", gameObject);
-        return -1; // Return -1 if ID wasn't found
+        return -1; // Return -1 if ID wasn't found or error occurred
     }
 
     //Tall demand on performance, use with caution

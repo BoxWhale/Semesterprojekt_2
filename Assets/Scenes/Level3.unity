@@ -1033,7 +1033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1632717568054714741, guid: 56585fb1c237b3d429ad353da4509325, type: 3}
       propertyPath: isGoal
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1632717568054714741, guid: 56585fb1c237b3d429ad353da4509325, type: 3}
       propertyPath: nodeID
