@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public float interval
     {
         get => _interval;
-        set => _interval = Mathf.Clamp(value, 0f, 1f);
+        set => _interval = Mathf.Clamp01(value);
     }
 
     private void Start()

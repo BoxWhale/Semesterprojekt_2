@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 1263565156523097854}
   - component: {fileID: 881066202885837091}
   m_Layer: 16
-  m_Name: CubeInteract (3)
+  m_Name: CubeInteract (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoConnect: 1
   invokeAutoConnect: 0
-  nodeID: 3
+  nodeID: 0
   walkable: 1
   nodes:
   - {fileID: 0}

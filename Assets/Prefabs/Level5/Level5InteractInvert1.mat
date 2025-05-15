@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Level4Interact
+  m_Name: Level5InteractInvert1
   m_Shader: {fileID: -6465566751694194690, guid: 23648a59add217b42b194c2f40373f99, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
