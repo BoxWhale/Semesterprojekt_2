@@ -24,6 +24,8 @@ public class NodeTrigger : MonoBehaviour
     public float hoverHeight = 0.2f;
     [Tooltip("Spin speed for the indicator.")]
     public float spinSpeed = 50f;
+    [Tooltip("Time offset for the indicator to hover up and down.")]
+    [Range(0f,Mathf.PI)]public float piOffset = 0.5f; // Offset for the sine wave
 
     [Tooltip("Direction in which the indicator flies when triggered.")]
     public Vector3 flyDirection = Vector3.up;
@@ -74,12 +76,12 @@ public class NodeTrigger : MonoBehaviour
     {
         if (indicatorInstance != null)
         {
-            // Hover effect
-            float hoverOffset = Mathf.Sin(Time.time * hoverSpeed) * hoverHeight;
-            indicatorInstance.transform.position = initialIndicatorPosition + new Vector3(0, hoverOffset, 0);
+            // Hover effect relative to the object's local Y-axis
+            float hoverOffset = Mathf.Sin(Time.time * hoverSpeed + piOffset) * hoverHeight;
+            indicatorInstance.transform.position = transform.position + transform.rotation * (Vector3.up * hoverOffset + flyDirection);
 
-            // Spin effect
-            indicatorInstance.transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime, Space.World);
+            // Spin effect around the object's local up direction
+            indicatorInstance.transform.Rotate(transform.up, spinSpeed * Time.deltaTime, Space.World);
         }
     }
 

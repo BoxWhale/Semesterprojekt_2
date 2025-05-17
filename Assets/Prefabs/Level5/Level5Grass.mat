@@ -104,7 +104,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _Point0_Shift: -8
+    - _Point0_Shift: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -128,7 +128,7 @@ Material:
     - _Color_y: {r: 0.14840499, g: 0.2704515, b: 0.443, a: 0}
     - _Color_z: {r: 0.11886, g: 0.21265423, b: 0.283, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FadeControle: {r: 1, g: 1, b: 0, a: 0}
+    - _FadeControle: {r: 1, g: 1.5, b: 0, a: 0}
     - _GlobalColor: {r: 1, g: 1, b: 1, a: 0}
     - _LightDirection: {r: -2.18, g: 4.18, b: -0.51, a: 0}
     - _Main: {r: 1, g: 1, b: 1, a: 0}
