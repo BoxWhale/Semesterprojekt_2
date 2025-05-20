@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -46,7 +47,11 @@ public class Player : MonoBehaviour
             if (interval >= 1f || path[0] == currentNode) // Use >= instead of == for floating-point comparison
             {
                 currentNode = path[0]; // Update currentNode to the new position
-                gameObject.layer = currentNode.gameObject.layer;
+                /*if (gameObject.layer != currentNode.gameObject.layer && !changingLayer)
+                {
+                    changingLayer = true;
+                    StartCoroutine(ChangeLayer());
+                }*/
                 path.RemoveAt(0);
                 interval = 0f;
             }
@@ -55,10 +60,36 @@ public class Player : MonoBehaviour
         {
             transform.position = currentNode.transform.position + currentNode.transform.rotation * Vector3.up;
             transform.rotation = currentNode.transform.rotation;
-            gameObject.layer = currentNode.gameObject.layer;
+            /*if (gameObject.layer != currentNode.gameObject.layer && !changingLayer)
+            {
+                changingLayer = true;
+                StartCoroutine(ChangeLayer());
+            }*/
         }
     }
 
+    /*private bool changingLayer;
+    private IEnumerator ChangeLayer()
+    {
+        gameObject.layer = currentNode.gameObject.layer;
+        foreach (Transform child in GetAllChildren(transform))
+        {
+            child.gameObject.layer = currentNode.gameObject.layer;
+        }
+        changingLayer = false;
+        yield break;
+    }*/
+
+    private static List<Transform> GetAllChildren(Transform parent)
+    {
+        List<Transform> children = new List<Transform>();
+        foreach (Transform child in parent)
+        {
+            children.Add(child);
+            children.AddRange(GetAllChildren(child)); // Recursively add subsequent children
+        }
+        return children;
+    }
     private void OnEnable()
     {
         CursorController.OnNodeSelected += HandleNodeSelected3;
