@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 1632717568054714741}
   - component: {fileID: 937346585271294758}
   m_Layer: 0
-  m_Name: GrassCubeNode (0)
+  m_Name: GrassCubeNode (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoConnect: 0
   invokeAutoConnect: 0
-  nodeID: 0
+  nodeID: 6
   walkable: 1
   nodes: []
   detectionRadius: 0.6

@@ -20,11 +20,11 @@ public class NodeConnection : MonoBehaviour
     {
         if (currentPosition > shouldConnectAccPosition.Length) return;
 
-        if (shouldConnectAccPosition[currentPosition]) ConnecetNodes();
+        if (shouldConnectAccPosition[currentPosition]) Invoke("ConnectNodes",0.01f);
         else DisconnecetNodes();
     }
 
-    public void ConnecetNodes()
+    public void ConnectNodes()
     {
         if (!node1.GetComponent<NodeID>().nodes.Contains(node2.GetComponent<NodeID>()))
             node1.GetComponent<NodeID>().nodes.Add(node2.GetComponent<NodeID>());
