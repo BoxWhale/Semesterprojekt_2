@@ -104,7 +104,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _Point0_Shift: -3.03
+    - _Point0_Shift: -6.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -115,10 +115,10 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WorkflowMode: 1
-    - _X_Fade: 1
+    - _X_Fade: 0
     - _Y_Fade: 1
     - _ZWrite: 1
-    - _Z_Fade: 1
+    - _Z_Fade: 0
     - _useGlobalColor: 0
     m_Colors:
     - _Background_color: {r: 0.0627451, g: 0.039215688, b: 0.101960786, a: 0}
@@ -128,7 +128,7 @@ Material:
     - _Color_y: {r: 0.16862746, g: 0.33333334, b: 0.32418674, a: 0}
     - _Color_z: {r: 0.11764705, g: 0.30980393, b: 0.27044293, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FadeControle: {r: 1, g: 1, b: 0, a: 0}
+    - _FadeControle: {r: 2, g: 1, b: 0, a: 0}
     - _GlobalColor: {r: 1, g: 1, b: 1, a: 0}
     - _LightDirection: {r: -2, g: 4, b: -2, a: 0}
     - _Main: {r: 0.4502101, g: 0.24778998, b: 0.698, a: 0}

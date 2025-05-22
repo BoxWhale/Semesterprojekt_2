@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2fc0050c816cd245bd07f65875541df, type: 2}
+  - {fileID: 2100000, guid: 7a585f8b4ca1ff44282ef5cf8a80411a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,7 +150,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2fc0050c816cd245bd07f65875541df, type: 2}
+  - {fileID: 2100000, guid: 7a585f8b4ca1ff44282ef5cf8a80411a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -236,7 +236,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2fc0050c816cd245bd07f65875541df, type: 2}
+  - {fileID: 2100000, guid: 7a585f8b4ca1ff44282ef5cf8a80411a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -580,7 +580,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2fc0050c816cd245bd07f65875541df, type: 2}
+  - {fileID: 2100000, guid: 7a585f8b4ca1ff44282ef5cf8a80411a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -666,7 +666,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2fc0050c816cd245bd07f65875541df, type: 2}
+  - {fileID: 2100000, guid: 7a585f8b4ca1ff44282ef5cf8a80411a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: 6962327603504475420}
   - component: {fileID: 6265808867998177314}
   m_Layer: 15
-  m_Name: TexturedCubeNodeInteract (0)
+  m_Name: TexturedCubeNodeInteract (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -744,11 +744,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoConnect: 0
   invokeAutoConnect: 0
-  nodeID: 0
+  nodeID: 3
   walkable: 1
   nodes:
   - {fileID: 0}
   detectionRadius: 0.6
+  isGoal: 0
+  sceneName: 
 --- !u!65 &6265808867998177314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -834,7 +836,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2fc0050c816cd245bd07f65875541df, type: 2}
+  - {fileID: 2100000, guid: 7a585f8b4ca1ff44282ef5cf8a80411a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
