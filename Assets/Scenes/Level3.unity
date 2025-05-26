@@ -852,6 +852,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 352128608774622253, guid: 9cb74a7edd2c5e0419563ec370944190, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1884733488}
+    - target: {fileID: 352128608774622253, guid: 9cb74a7edd2c5e0419563ec370944190, type: 3}
       propertyPath: dialougeText.Array.size
       value: 2
       objectReference: {fileID: 0}

@@ -6,17 +6,16 @@ using System.Collections;
 
 public class DialougeScript : MonoBehaviour
 {
-    //public GameObject player;
+    public GameObject player;
     public TextMeshProUGUI dialougeTextField;
     public float textTypingSpeed = 0.03f;
     public List<string> dialougeText;
-    int dialougeTextIndex = 0;
+    int dialougeTextIndex = -1;
 
     void Start()
     {
-        if(dialougeText is null) this.gameObject.SetActive(false);
         LockPlayerControls();
-        SetDialougeText();
+        GoToNextDialougeText();
     }
 
     void Update()
@@ -62,11 +61,15 @@ public class DialougeScript : MonoBehaviour
     void LockPlayerControls()
     {
         //Make player unable to move
+        player.GetComponentInChildren<CursorController>().rightClickEnabled = false;
+        player.GetComponentInChildren<CursorController>().leftClickEnabled = false;
     }
 
     void UnlockPlayerControls()
     {
         //Make player able to move again
+        player.GetComponentInChildren<CursorController>().rightClickEnabled = true;
+        player.GetComponentInChildren<CursorController>().leftClickEnabled = true;
     }
 
 
