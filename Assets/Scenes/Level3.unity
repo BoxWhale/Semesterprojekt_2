@@ -861,7 +861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 352128608774622253, guid: 9cb74a7edd2c5e0419563ec370944190, type: 3}
       propertyPath: 'dialougeText.Array.data[0]'
-      value: Ohh, now these blosk are a bit more tricky to manipualte.
+      value: Ohh, now these blocks are a bit more tricky to manipulate.
       objectReference: {fileID: 0}
     - target: {fileID: 352128608774622253, guid: 9cb74a7edd2c5e0419563ec370944190, type: 3}
       propertyPath: 'dialougeText.Array.data[1]'

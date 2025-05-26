@@ -4722,15 +4722,15 @@ PrefabInstance:
       objectReference: {fileID: 1322352683}
     - target: {fileID: 352128608774622253, guid: 9cb74a7edd2c5e0419563ec370944190, type: 3}
       propertyPath: dialougeText.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 352128608774622253, guid: 9cb74a7edd2c5e0419563ec370944190, type: 3}
       propertyPath: 'dialougeText.Array.data[0]'
-      value: We just got an S.O.S call at the headquartes.
+      value: We just got an S.O.S call from the headquarters.
       objectReference: {fileID: 0}
     - target: {fileID: 352128608774622253, guid: 9cb74a7edd2c5e0419563ec370944190, type: 3}
       propertyPath: 'dialougeText.Array.data[1]'
-      value: It seems that another poor soul had wandered into the void and got lost.
+      value: It seems that another poor soul has wandered into the void and got lost.
       objectReference: {fileID: 0}
     - target: {fileID: 352128608774622253, guid: 9cb74a7edd2c5e0419563ec370944190, type: 3}
       propertyPath: 'dialougeText.Array.data[2]'
@@ -4738,8 +4738,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 352128608774622253, guid: 9cb74a7edd2c5e0419563ec370944190, type: 3}
       propertyPath: 'dialougeText.Array.data[3]'
-      value: You first missoin on this job will be to search for them and rescue
+      value: You first mission on this job will be to search for them and rescue
         them.
+      objectReference: {fileID: 0}
+    - target: {fileID: 352128608774622253, guid: 9cb74a7edd2c5e0419563ec370944190, type: 3}
+      propertyPath: 'dialougeText.Array.data[4]'
+      value: Just continue ahead, their signal seems to come from a bit further within
+        the void.
       objectReference: {fileID: 0}
     - target: {fileID: 1164835106939986864, guid: 9cb74a7edd2c5e0419563ec370944190, type: 3}
       propertyPath: m_Pivot.x
