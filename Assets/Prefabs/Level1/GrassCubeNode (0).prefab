@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 6143625638111794396}
   - component: {fileID: 7185185748856279220}
   m_Layer: 15
-  m_Name: GrassCubeNode (14)
+  m_Name: GrassCubeNode (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoConnect: 0
   invokeAutoConnect: 0
-  nodeID: 14
+  nodeID: 3
   walkable: 1
   nodes:
   - {fileID: 0}

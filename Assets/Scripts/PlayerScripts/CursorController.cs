@@ -12,6 +12,10 @@ public class CursorController : MonoBehaviour
     public InputAction interact;
     public NodeID node;
     
+    public bool debugMode = true;
+    public bool leftClickEnabled = true;
+    public bool rightClickEnabled = true;
+    
     
     private void Awake()
     {
@@ -46,6 +50,7 @@ public class CursorController : MonoBehaviour
 
     private void RightClick()
     {
+        if (!rightClickEnabled) return;
         Debug.Log("Right mouse button pressed");
 
         
@@ -67,7 +72,9 @@ public class CursorController : MonoBehaviour
 
     private void LeftClick()
     {
-        Debug.Log("Left mouse button pressed");
+        if (!leftClickEnabled) return;
+        
+        if(debugMode) Debug.Log("Left mouse button pressed");
         var screenPosition = cursor.ReadValue<Vector2>();
         if (Camera.main == null) return;
 
@@ -81,7 +88,7 @@ public class CursorController : MonoBehaviour
             {
                 interactable.OnInteract();
             }
-            else Debug.LogError("No interactable found");
+            else if (interactable == null && debugMode) Debug.LogError("No interactable found");
         }
     }
 }
