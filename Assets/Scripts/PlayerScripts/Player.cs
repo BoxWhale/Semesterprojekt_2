@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     private BfsManager3 manager;
     private bool _invokeNextScene = false;
 
+    private Animator animator;
+
     public float interval
     {
         get => _interval;
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         manager = gameObject.GetComponent<BfsManager3>();
         path = new List<NodeID>();
     }
@@ -36,12 +39,13 @@ public class Player : MonoBehaviour
             currentNode.loadSceneInvoke();
             return;
         }
-        
+
         if (targetNode != null && path.Count > 0 && allowMovement)
         {
+            SetAnimationToRunning();
             interval += speed * Time.deltaTime;
             transform.position =
-                Vector3.Lerp(currentNode.transform.position + currentNode.transform.rotation * Vector3.up, 
+                Vector3.Lerp(currentNode.transform.position + currentNode.transform.rotation * Vector3.up,
                              path[0].transform.position + path[0].transform.rotation * Vector3.up, interval);
             transform.rotation = Quaternion.Slerp(currentNode.transform.rotation, path[0].transform.rotation, interval);
             if (interval >= 1f || path[0] == currentNode) // Use >= instead of == for floating-point comparison
@@ -58,6 +62,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            SetAnimationToWalking();
             transform.position = currentNode.transform.position + currentNode.transform.rotation * Vector3.up;
             transform.rotation = currentNode.transform.rotation;
             /*if (gameObject.layer != currentNode.gameObject.layer && !changingLayer)
@@ -101,8 +106,8 @@ public class Player : MonoBehaviour
     }
     private bool IsValidMovement(NodeID targetNode)
     {
-        return targetNode != null && 
-               targetNode.walkable && 
+        return targetNode != null &&
+               targetNode.walkable &&
                targetNode.gameObject.layer == currentNode.gameObject.layer;
     }
 
@@ -115,7 +120,7 @@ public class Player : MonoBehaviour
             {
                 targetNode = node;
                 var newPath = await manager.FindPath(currentNode, node);
-            
+
                 // Only update path if we found a valid one
                 if (newPath != null && newPath.Count > 0)
                 {
@@ -131,4 +136,17 @@ public class Player : MonoBehaviour
             path.Clear();
         }
     }
+
+
+    public void SetAnimationToRunning()
+    {
+        animator.SetBool("isRunning", true);
+    }
+
+    public void SetAnimationToWalking()
+    {
+        animator.SetBool("isRunning", false);
+    }
+
+
 }
