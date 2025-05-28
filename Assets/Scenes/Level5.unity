@@ -6053,8 +6053,8 @@ MonoBehaviour:
   nodeID: 26
   walkable: 1
   nodes:
-  - {fileID: 906532541}
   - {fileID: 701234028}
+  - {fileID: 906532541}
   detectionRadius: 0.6
   isGoal: 0
   sceneName: 
@@ -12758,6 +12758,10 @@ PrefabInstance:
     - target: {fileID: 4935920060199586281, guid: df96e49e12aea5c4783f632d59a955ea, type: 3}
       propertyPath: nodeID
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935920060199586281, guid: df96e49e12aea5c4783f632d59a955ea, type: 3}
+      propertyPath: sceneName
+      value: ThanksForPlaying
       objectReference: {fileID: 0}
     - target: {fileID: 4935920060199586281, guid: df96e49e12aea5c4783f632d59a955ea, type: 3}
       propertyPath: autoConnect

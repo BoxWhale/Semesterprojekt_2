@@ -44,18 +44,28 @@ public class Player : MonoBehaviour
         {
             SetAnimationToRunning();
             interval += speed * Time.deltaTime;
-            transform.position =
-                Vector3.Lerp(currentNode.transform.position + currentNode.transform.rotation * Vector3.up,
-                             path[0].transform.position + path[0].transform.rotation * Vector3.up, interval);
-            transform.rotation = Quaternion.Slerp(currentNode.transform.rotation, path[0].transform.rotation, interval);
+            
+            // Get positions with the correct up vector alignment
+            Vector3 currentPosition = currentNode.transform.position + currentNode.transform.rotation * Vector3.up;
+            Vector3 targetPosition = path[0].transform.position + path[0].transform.rotation * Vector3.up;
+            
+            // Calculate movement direction
+            Vector3 moveDirection = (targetPosition - currentPosition).normalized;
+            
+            // Update position
+            transform.position = Vector3.Lerp(currentPosition, targetPosition, interval);
+            
+            // Set rotation to face movement direction while maintaining up vector from current node
+            if (moveDirection != Vector3.zero)
+            {
+                Vector3 upVector = currentNode.transform.rotation * Vector3.up;
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection, upVector);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, interval);
+            }
+            
             if (interval >= 1f || path[0] == currentNode) // Use >= instead of == for floating-point comparison
             {
                 currentNode = path[0]; // Update currentNode to the new position
-                /*if (gameObject.layer != currentNode.gameObject.layer && !changingLayer)
-                {
-                    changingLayer = true;
-                    StartCoroutine(ChangeLayer());
-                }*/
                 path.RemoveAt(0);
                 interval = 0f;
             }
@@ -64,37 +74,24 @@ public class Player : MonoBehaviour
         {
             SetAnimationToWalking();
             transform.position = currentNode.transform.position + currentNode.transform.rotation * Vector3.up;
-            transform.rotation = currentNode.transform.rotation;
-            /*if (gameObject.layer != currentNode.gameObject.layer && !changingLayer)
+            
+            // Calculate the up vector from the current node
+            Vector3 upVector = currentNode.transform.rotation * Vector3.up;
+            
+            // Maintain the current forward direction but aligned with the node's up vector
+            Vector3 forwardDir = transform.forward;
+            // Project the forward vector onto the plane defined by the up vector
+            Vector3 projectedForward = Vector3.ProjectOnPlane(forwardDir, upVector).normalized;
+            
+            // If the projected forward is not zero, use it for the rotation
+            if (projectedForward != Vector3.zero)
             {
-                changingLayer = true;
-                StartCoroutine(ChangeLayer());
-            }*/
+                Quaternion targetRotation = Quaternion.LookRotation(projectedForward, upVector);
+                transform.rotation = targetRotation;
+            }
         }
     }
-
-    /*private bool changingLayer;
-    private IEnumerator ChangeLayer()
-    {
-        gameObject.layer = currentNode.gameObject.layer;
-        foreach (Transform child in GetAllChildren(transform))
-        {
-            child.gameObject.layer = currentNode.gameObject.layer;
-        }
-        changingLayer = false;
-        yield break;
-    }*/
-
-    private static List<Transform> GetAllChildren(Transform parent)
-    {
-        List<Transform> children = new List<Transform>();
-        foreach (Transform child in parent)
-        {
-            children.Add(child);
-            children.AddRange(GetAllChildren(child)); // Recursively add subsequent children
-        }
-        return children;
-    }
+    
     private void OnEnable()
     {
         CursorController.OnNodeSelected += HandleNodeSelected3;
